@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Employee</h2>
+<form method="post" class="w-50">
+    {% csrf_token %}
+    <div class="mb-2"><label>Name</label>
+        <input type="text" name="name" class="form-control" value="{{ emp.name }}"></div>
+    <div class="mb-2"><label>Department</label>
+        <input type="text" name="department" class="form-control" value="{{ emp.department }}"></div>
+    <div class="mb-2"><label>Position</label>
+        <input type="text" name="position" class="form-control" value="{{ emp.position }}"></div>
+    <div class="mb-2"><label>Attendance (%)</label>
+        <input type="number" step="0.1" name="attendance" class="form-control" value="{{ emp.attendance }}"></div>
+    <div class="mb-2"><label>Performance Rating</label>
+        <input type="number" step="0.1" name="performance_rating" class="form-control" value="{{ emp.performance_rating }}"></div>
+    <div class="mb-2"><label>Experience (years)</label>
+        <input type="number" name="experience" class="form-control" value="{{ emp.experience }}"></div>
+    <div class="mb-2"><label>Salary</label>
+        <input type="number" name="salary" class="form-control" value="{{ emp.salary }}"></div>
+    <div class="mb-2"><label>Project Completion Rate (%)</label>
+        <input type="number" step="0.1" name="project_completion_rate" class="form-control" value="{{ emp.project_completion_rate }}"></div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="/employees/" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

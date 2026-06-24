@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block nav_dashboard %}active{% endblock %}
+{% block page_title %}Dashboard Overview{% endblock %}
+
+{% block content %}
+<div style="background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(0,212,170,0.1));border:1px solid rgba(108,99,255,0.2);border-radius:12px;padding:20px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;">Welcome back 👋</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;">{{ request.user.username }}</div>
+    </div>
+    <div style="text-align:right;">
+        <div style="font-size:11px;color:var(--text-muted);">Logged in as</div>
+        <div style="font-size:13px;color:var(--accent);font-weight:600;">Administrator</div>
+    </div>
+</div>
+<div class="stat-grid">
+    <div class="stat-card purple">
+        <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+        <div class="stat-value">{{ total }}</div>
+        <div class="stat-label">Total Employees</div>
+    </div>
+    <div class="stat-card green">
+        <div class="stat-icon"><i class="bi bi-graph-up"></i></div>
+        <div class="stat-value">{{ avg_score }}</div>
+        <div class="stat-label">Avg Performance Score</div>
+    </div>
+    <div class="stat-card yellow">
+        <div class="stat-icon"><i class="bi bi-trophy-fill"></i></div>
+        <div class="stat-value">{{ highest }}</div>
+        <div class="stat-label">Highest Score</div>
+    </div>
+    <div class="stat-card red">
+        <div class="stat-icon"><i class="bi bi-arrow-down-circle-fill"></i></div>
+        <div class="stat-value">{{ lowest }}</div>
+        <div class="stat-label">Lowest Score</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header-row">
+        <div class="card-title"><i class="bi bi-trophy" style="color:#ffd93d"></i> &nbsp;Top 10 Performers</div>
+        <a href="/employees/" class="btn btn-secondary btn-sm">View All</a>
+    </div>
+    {% if top_employees %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Performance Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for e in top_employees %}
+                <tr>
+                    <td style="color:var(--text-muted)">{{ forloop.counter }}</td>
+                    <td><strong>{{ e.name }}</strong></td>
+                    <td>{{ e.department }}</td>
+                    <td>
+                        {% if e.performance_rating >= 8 %}
+                            <span class="rating rating-high"><i class="bi bi-star-fill"></i> {{ e.performance_rating }}</span>
+                        {% elif e.performance_rating >= 6 %}
+                            <span class="rating rating-mid"><i class="bi bi-star-half"></i> {{ e.performance_rating }}</span>
+                        {% else %}
+                            <span class="rating rating-low"><i class="bi bi-star"></i> {{ e.performance_rating }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <i class="bi bi-people"></i>
+        <p>No employees yet. <a href="/add/" style="color:var(--accent)">Add your first employee</a> or <a href="/employees/" style="color:var(--accent)">import a CSV</a>.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
