@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g1&uouo_aognewdv*g202klz4(6kgo-(6h#dp4$4)avf-ww8in
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'performiq-production.up.railway.app', '.railway.app']
+ALLOWED_HOSTS = ['*', 'performiq-production.up.railway.app', '.railway.app', 'perform-iq-alpha.vercel.app', '.vercel.app']
 
 
 # Application definition
@@ -131,4 +131,4 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-CSRF_TRUSTED_ORIGINS = ['https://performiq-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://performiq-production.up.railway.app', 'https://perform-iq-alpha.vercel.app']
