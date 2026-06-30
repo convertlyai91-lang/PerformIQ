@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-performiq-secret-key-2024'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '.railway.app', '.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://performiq-production.up.railway.app',
@@ -86,3 +86,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
